@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Monitus>
+  
+  <Component name="Web Applications">
+    
+    <SLO id="1" name="Google Responding" type="Boolean">
+      <!-- This determines how notifications will be handled, in these examples we use a 'SlackNotifier' -->
+      <Notifier type="Slack"></Notifier>
+      <!-- This will fail if the configured website does not come back within 'retryCount' attempts -->
+      <SLI type="WebRequest" retryCount="3" url="https://google.com"></SLI>
+    </SLO>
+    
+    <!-- This will fail if the configured website does not come back within the specified time (in MS) -->
+    <SLO id="2" name="Facebook Responding Quickly" type="Comparison" target="5000" isGreaterThan="false">
+      <Notifier type="Slack"></Notifier>
+      <SLI type="WebRequestTimer" url="https://facebook.com"></SLI>
+    </SLO>
+    
+  </Component>
+
+  <!-- Monitor database performance by updating these configs with your db specs-->
+  <!--<Component name="Database Queries">
+    <SLO id="3" name="Suspended Queries" type="Comparison" target="15" isGreaterThan="false">
+      <Notifier type="Slack"></Notifier>
+      <SLI type="DBSuspendedQueries" databaseName="{{YourDBName}}"></SLI>
+    </SLO>
+    <SLO id="4" name="DBLongRunningQueries" type="Comparison" target="120000" isGreaterThan="false" startIgnore="0" endIgnore="10">
+      <Notifier type="Slack"></Notifier>
+      <SLI type="DBLongRunningQueries" databaseName="{{YourDBName}}" ></SLI>
+    </SLO>
+  </Component>-->
+
+  <!-- Monitor server performance (disk usage, cpu usage, memory usage) by updating these configs with your server specs-->
+  <!--
+  <Component name ="Server Performance">
+    <SLO id="5" name="Memory Usage" type="Comparison" target="80" isGreaterThan="false">
+      <Notifier type="Slack"></Notifier>
+      <SLI type="MemoryUsage" machineName="{{MACHINE_NAME_HERE}}" totalMemoryInMB="31500"></SLI>
+    </SLO>
+    <SLO id="6" name="Disk Space Usage" type="Comparison" target="70" isGreaterThan="false" startIgnore="0" endIgnore="10">
+      <Notifier type="Slack"></Notifier>
+      <SLI type="DiskSpace" mainDriveName="C:" totalDiskSpaceInMB="100000"></SLI>
+    </SLO>
+    <SLO id="7" name="CPU Usage" type="Comparison" target="90" isGreaterThan="false" startIgnore="0" endIgnore="10">
+      <Notifier type="Slack"></Notifier>
+      <SLI type="CPUUsage" machineName="{{MACHINE_NAME_HERE}}"></SLI>
+    </SLO>
+  </Component>
+  --> 
+  
+</Monitus>
